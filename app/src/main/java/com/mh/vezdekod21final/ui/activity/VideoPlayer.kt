@@ -12,7 +12,11 @@ import com.google.android.exoplayer2.SimpleExoPlayer
 import com.mh.vezdekod21final.databinding.ActivityVideoPlayerBinding
 import java.lang.Exception
 import android.content.ContextWrapper
+import android.view.MotionEvent
+import android.view.ScaleGestureDetector
 import android.widget.Toast
+import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
+import com.google.android.exoplayer2.ui.PlayerView
 import java.io.*
 
 
@@ -20,6 +24,8 @@ class VideoPlayer : AppCompatActivity() {
     private lateinit var uri: Uri
     private var filePatch = ""
     private lateinit var binding: ActivityVideoPlayerBinding
+    private var scaleGestureDetector: ScaleGestureDetector? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityVideoPlayerBinding.inflate(layoutInflater)
@@ -85,6 +91,40 @@ class VideoPlayer : AppCompatActivity() {
         }
     }
 
+
+    private class CustomOnScaleGestureListener(
+        private val player: PlayerView
+    ) : ScaleGestureDetector.SimpleOnScaleGestureListener() {
+        private var scaleFactor = 0f
+
+        override fun onScale(
+            detector: ScaleGestureDetector
+        ): Boolean {
+            scaleFactor = detector.scaleFactor
+            return true
+        }
+
+        override fun onScaleBegin(
+            detector: ScaleGestureDetector
+        ) : Boolean{
+            return true
+        }
+        override fun onScaleEnd(detector: ScaleGestureDetector) {
+            if (scaleFactor > 1) {
+                player.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
+            } else {
+                player.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT
+            }
+        }
+    }
+
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        super.onTouchEvent(event)
+        scaleGestureDetector?.onTouchEvent(event)
+
+        return true
+    }
 
 
 

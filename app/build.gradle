@@ -63,7 +63,7 @@ dependencies {
     implementation 'androidx.preference:preference-ktx:1.1.1'
 
     //https://github.com/tizisdeepan/VideoEditor
-    implementation 'com.github.tizisdeepan:videoeditor:1.0.8'
+    //implementation 'com.github.tizisdeepan:videoeditor:1.0.8'
 
     //Handle Path Oz RealUrl from cloud
     implementation 'com.github.onimur:handle-path-oz:1.0.7'
@@ -71,5 +71,10 @@ dependencies {
     //ExoPlayer
     implementation 'com.google.android.exoplayer:exoplayer:2.15.1'
 
+
+
     implementation 'com.google.android.exoplayer:exoplayer-transformer:2.15.1'
+
+    //SSffmpegVideoOperation
+    implementation 'com.github.SimformSolutionsPvtLtd:SSffmpegVideoOperation:1.0.7'
 }

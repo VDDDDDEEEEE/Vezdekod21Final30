@@ -2,14 +2,11 @@ package com.mh.vezdekod21final.ui.activity
 
 import android.Manifest
 import android.app.Activity
-import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -18,14 +15,9 @@ import br.com.onimur.handlepathoz.HandlePathOz
 import br.com.onimur.handlepathoz.HandlePathOzListener
 import br.com.onimur.handlepathoz.model.PathOz
 import com.give.vezdekodmh.utils.Const
-import com.give.vezdekodmh.utils.L
 import com.mh.vezdekod21final.R
 import com.mh.vezdekod21final.databinding.ActivityMainBinding
-import com.video.trimmer.interfaces.OnTrimVideoListener
-import com.video.trimmer.interfaces.OnVideoListener
 import java.io.File
-import androidx.core.app.ActivityCompat.startActivityForResult
-import java.io.OutputStream
 
 
 class MainActivity : AppCompatActivity(), HandlePathOzListener.SingleUri {
@@ -129,7 +121,7 @@ class MainActivity : AppCompatActivity(), HandlePathOzListener.SingleUri {
 
     override fun onRequestHandlePathOz(pathOz: PathOz, tr: Throwable?) {
         val uri = Uri.fromFile(File(pathOz.path))
-        val videoActivity = Intent(this, VideoPlayer::class.java)
+        val videoActivity = Intent(this, VideoActivity::class.java)
         videoActivity.putExtra(Const.VIDEOURI , uri.toString())
         videoActivity.putExtra(Const.VIDEOPATH , pathOz.path)
         startActivity(videoActivity)

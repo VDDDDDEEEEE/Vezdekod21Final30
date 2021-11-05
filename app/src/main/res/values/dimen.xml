@@ -7,4 +7,9 @@
     <dimen name="_12sdp">12sp</dimen>
     <dimen name="_50sdp">50sp</dimen>
 
+
+    <dimen name="progress_video_line_height">2dp</dimen>
+    <dimen name="frames_video_height">56dip</dimen>
+    <dimen name="text_small">@dimen/_10sdp</dimen>
+
 </resources>
